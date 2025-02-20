@@ -8,7 +8,7 @@ const token = localStorage.getItem("accessToken");
 
 const AuthProvider = ({ children }) => {
   // 로그인 여부를 state로 저장
-  const [isAuthenticated, setIsAuthenticated] = useState(!!token); //토크의 상태를 유지한 채 boolean 타입으로 변환
+  const [isAuthenticated, setIsAuthenticated] = useState(!!token); //토크의 상태?값?를 유지한 채 boolean 타입으로 변환
 
   // 로그인 - 토큰을 로컬에 저장하고, 인증상태로 바꾼다.
   const login = (token) => {
@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, token }}>
       {children}
     </AuthContext.Provider>
   );
