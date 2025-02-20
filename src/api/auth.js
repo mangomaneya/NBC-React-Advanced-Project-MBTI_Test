@@ -9,7 +9,7 @@ export const register = async (userData) => {
 };
 
 //로그인 - post /login userData : "id", "password" / response : "accessToken","userId", "success", "avatar", "nickname"
-export const login = async (userData) => {
+export const authLogin = async (userData) => {
   const response = await axios.post(`${API_URL}/login?expiresIn=10m`, userData);
   return response.data;
 };
