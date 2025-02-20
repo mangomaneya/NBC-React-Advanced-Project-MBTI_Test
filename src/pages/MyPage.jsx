@@ -39,6 +39,11 @@ const MyPage = () => {
   // 닉네임 업데이트
   const handleUpdateNickname = async (e) => {
     e.preventDefault();
+    //새로운 닉네임이 입력되지 않았을 때
+    if (!newNickname) {
+      alert("변경할 내용이 없습니다.");
+      return;
+    }
     const confirmInput = window.confirm("정말 변경하시겠습니까?");
     if (confirmInput) {
       // 인풋으로 받은 닉네임을 formData에 담아서 patch통신
@@ -67,23 +72,31 @@ const MyPage = () => {
     return <div>Loading...</div>;
   }
   return (
-    <>
-      <h2>마이 페이지</h2>
-      <p>아이디 : {userData.id}</p>
-      <p>닉네임 : {userData.nickname}</p>
-      <form onSubmit={handleUpdateNickname}>
-        <input
-          type="text"
-          name="nickname"
-          placeholder={userData.nickname}
-          value={newNickname}
-          onChange={(e) => {
-            setNewNickname(e.target.value);
-          }}
-        />
-        <button type="submit">닉네임 수정</button>
-      </form>
-    </>
+    <div className="w-96	mx-4 flex flex-col items-center justify-center">
+      <h2 className="text-3xl font-bold mb-6">마이 페이지</h2>
+      <div className="w-full space-y-6 bg-white p-6 rounded-lg shadow-md ">
+        <p>아이디 : {userData.id}</p>
+        <p>닉네임 : {userData.nickname}</p>
+        <form onSubmit={handleUpdateNickname} className="space-y-6">
+          <input
+            type="text"
+            name="nickname"
+            placeholder={userData.nickname}
+            value={newNickname}
+            onChange={(e) => {
+              setNewNickname(e.target.value);
+            }}
+            className="w-full p-4 border border-gray-300 rounded-lg "
+          />
+          <button
+            type="submit"
+            className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-300 transition duration-300 "
+          >
+            닉네임 수정
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

@@ -37,15 +37,19 @@ const Signup = () => {
   };
 
   return (
-    <>
-      <h2>회원가입</h2>
-      <form onSubmit={handleSubmitSignup}>
+    <div className="w-96	mx-4 flex flex-col items-center justify-center">
+      <h2 className="text-3xl font-bold mb-6">회원가입</h2>
+      <form
+        onSubmit={handleSubmitSignup}
+        className="w-full space-y-6 bg-white p-6 rounded-lg shadow-md "
+      >
         <input
           type="text"
           name="id"
           placeholder="아이디"
           value={signupData.id}
           onChange={handleInputChange}
+          className="w-full p-4 border border-gray-300 rounded-lg "
         />
         <input
           type="password"
@@ -53,6 +57,7 @@ const Signup = () => {
           placeholder="비밀번호"
           value={signupData.password}
           onChange={handleInputChange}
+          className="w-full p-4 border border-gray-300 rounded-lg"
         />
         <input
           type="text"
@@ -60,13 +65,22 @@ const Signup = () => {
           placeholder="닉네임"
           value={signupData.nickname}
           onChange={handleInputChange}
+          className="w-full p-4 border border-gray-300 rounded-lg"
         />
-        <button type="submit">회원가입</button>
+        <button
+          type="submit"
+          className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-300 transition duration-300 "
+        >
+          회원가입
+        </button>
       </form>
-      <p>
-        이미 계정이 있으신가요? <Link to="/login">로그인</Link>
+      <p className="mt-4">
+        이미 계정이 있으신가요?{" "}
+        <Link to="/login" className="text-purple-600">
+          로그인
+        </Link>
       </p>
-    </>
+    </div>
   );
 };
 

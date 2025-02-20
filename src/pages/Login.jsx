@@ -38,15 +38,16 @@ const Login = () => {
   };
 
   return (
-    <>
-      <h2>로그인</h2>
-      <form onSubmit={handleSubmitLogin}>
+    <div className="w-96	mx-4 flex flex-col items-center justify-center">
+      <h2 className="text-3xl font-bold mb-6">로그인</h2>
+      <form onSubmit={handleSubmitLogin} className="w-full space-y-6 bg-white p-6 rounded-lg shadow-md ">
         <input
           type="text"
           name="id"
           placeholder="아이디"
           value={loginData.id}
           onChange={handleInputChange}
+          className="w-full p-4 border border-gray-300 rounded-lg"
         />
         <input
           type="password"
@@ -54,15 +55,16 @@ const Login = () => {
           placeholder="비밀번호"
           value={loginData.password}
           onChange={handleInputChange}
+          className="w-full p-4 border border-gray-300 rounded-lg"
         />
 
-        <button type="submit">로그인</button>
+        <button type="submit" className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-300 transition duration-300 ">로그인</button>
       </form>
 
-      <p>
-        계정이 없으신가요? <Link to="/signup">회원가입</Link>
+      <p className="mt-4">
+        계정이 없으신가요? <Link to="/signup" className="text-purple-600">회원가입</Link>
       </p>
-    </>
+    </div>
   );
 };
 

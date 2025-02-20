@@ -16,31 +16,32 @@ const Layout = () => {
   };
 
   return (
-    <>
-      <header>
-        <Link to="/">
-          <h1>홈</h1>
-        </Link>
-        <nav>
+    <div className="h-screen bg-slate-50 flex flex-col">
+      <header className="bg-purple-400 p-7 shadow-md rounded-xl mx-4 my-4">
+        <nav className="container mx-auto flex justify-between items-center text-slate-50 text-lg ">
+          <Link to="/">
+            <h1 className="font-bold">홈</h1>
+          </Link>
           {/* 로그인 여부에 따라서 ? 로그아웃 : 로그인 회원가입 */}
-          {isAuthenticated ? (
-            <>
-              <button onClick={handleLogout}>로그아웃</button>
-              <Link to="/mypage">마이페이지</Link>
-              
-            </>
-          ) : (
-            <>
-              <Link to="/login">로그인</Link>
-              <Link to="/signup">회원가입</Link>
-            </>
-          )}
+          <div className="space-x-4">
+            {isAuthenticated ? (
+              <>
+                <button onClick={handleLogout}>로그아웃</button>
+                <Link to="/mypage">마이페이지</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/login">로그인</Link>
+                <Link to="/signup">회원가입</Link>
+              </>
+            )}
+          </div>
         </nav>
       </header>
-      <main>
-      <Outlet />
+      <main className="container mx-auto pt-10 main flex flex-col items-center justify-center">
+        <Outlet />
       </main>
-    </>
+    </div>
   );
 };
 
