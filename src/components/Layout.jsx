@@ -18,21 +18,30 @@ const Layout = () => {
   return (
     <div className="h-screen bg-slate-50 flex flex-col">
       <header className="bg-purple-400 p-7 shadow-md rounded-xl mx-4 my-4">
-        <nav className="container mx-auto flex justify-between items-center text-slate-50 text-lg ">
+        <nav className="container mx-auto flex justify-between items-center text-slate-50 text-lg h-11">
           <Link to="/">
             <h1 className="font-bold">홈</h1>
           </Link>
           {/* 로그인 여부에 따라서 ? 로그아웃 : 로그인 회원가입 */}
-          <div className="space-x-4">
+          <div className="space-x-8">
             {isAuthenticated ? (
               <>
-                <button onClick={handleLogout}>로그아웃</button>
+                <Link to="/test">성격테스트</Link>
+                <Link to="/result">테스트 결과</Link>
                 <Link to="/mypage">마이페이지</Link>
+                <button
+                  onClick={handleLogout}
+                  className="bg-purple-800 p-4 rounded-xl"
+                >
+                  로그아웃
+                </button>
               </>
             ) : (
               <>
-                <Link to="/login">로그인</Link>
                 <Link to="/signup">회원가입</Link>
+                <Link to="/login" className="bg-purple-800 p-4 rounded-xl">
+                  로그인
+                </Link>
               </>
             )}
           </div>

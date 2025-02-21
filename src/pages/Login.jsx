@@ -26,7 +26,7 @@ const Login = () => {
       const { accessToken, success } = await authLogin(loginData);
       if (success) {
         login(accessToken); //컨텍스트에 토큰정보 전달 -> 토큰정보가 로컬스토리지에 저장됨/ 로그인 상태로 전환
-        alert('로그인에 성공했습니다. 마이페이지로 이동합니다.')
+        alert('로그인에 성공했습니다. 메인페이지로 이동합니다.')
         nav("/"); //? 왜 홈으로 돌렸는데 마이페이지로 이동하지? 
       } else {
         alert("로그인에 실패했습니다. 다시 시도해주세요.");
