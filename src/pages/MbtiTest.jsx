@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
-import TestForm from "../components/testForm";
+import { calculateMBTI } from "../utils/mbtiCalculator";
+import TestForm from "../components/TestForm";
+import { mbtiDescriptions } from "../data/mbtiDescriptions";
 
 const MbtiTest = () => {
   //테스트 결과를 담는 state
@@ -10,9 +11,9 @@ const MbtiTest = () => {
 
   //테스트 내용을 제출
   const handleTestSubmit = async (answers) => {
+    console.log('answers', answers)
     const mbtiResult = calculateMBTI(answers);
     //mbtiResult를 jsonServer에 post 하는 로직 필요
-
     setTestResult(mbtiResult);
   };
 
@@ -22,11 +23,11 @@ const MbtiTest = () => {
   };
   return (
     // 테스트 결과 유무에 따라서 ? 테스트 : 결과
-    <>
+    <div>
       {!testResult ? (
         <>
           <h2>MbtiTest</h2>
-          <TestForm onSubmit={handleTestSubmit} />
+          <TestForm onTestSubmit={handleTestSubmit} />
         </>
       ) : (
         <>
@@ -47,7 +48,7 @@ const MbtiTest = () => {
           </button>
         </>
       )}
-    </>
+    </div>
   );
 };
 
