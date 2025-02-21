@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../api/auth";
+import Swal from "sweetalert2";
 
 const Signup = () => {
   const nav = useNavigate();
@@ -24,15 +25,31 @@ const Signup = () => {
     try {
       const { message, success } = await register(signupData);
       if (success) {
-        alert("회원가입에 성공했습니다. 로그인페이지로 이동합니다.");
+        Swal.fire({
+          icon: "success",
+          title: "회원가입에 성공했습니다.",
+          text: "로그인페이지로 이동합니다.",
+          confirmButtonColor: "#c084fc"
+        });
         nav("/login");
       }
       if (message !== "회원가입 완료") {
-        alert(message, "다시 시도해주세요.");
+        Swal.fire({
+          icon: "error",
+          title: "회원가입 실패",
+          text: message,
+          confirmButtonColor: "#c084fc"
+        });
+        return;
       }
     } catch (error) {
-      console.error(error);
-      alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      console.error(error.response.data);
+      Swal.fire({
+        icon: "error",
+        title: "회원가입 실패",
+        text: error.response.data.message,
+        confirmButtonColor: "#11051c"
+      });
     }
   };
 
