@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
+import TestForm from "../components/testForm";
 
 const MbtiTest = () => {
   //테스트 결과를 담는 state
@@ -25,10 +26,7 @@ const MbtiTest = () => {
       {!testResult ? (
         <>
           <h2>MbtiTest</h2>
-          <form onSubmit={handleTestSubmit}>
-            <>테스트 문항</>
-            <button type="submit">제출하기</button>
-          </form>
+          <TestForm onSubmit={handleTestSubmit} />
         </>
       ) : (
         <>
