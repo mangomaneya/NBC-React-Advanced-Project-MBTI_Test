@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
   const nav = useNavigate();
-  const { isAuthenticated, token } = useContext(AuthContext);
+  const { isAuthenticated, token, logout } = useContext(AuthContext);
   const [userData, setUserData] = useState({
     id: "",
     avatar: "",
@@ -61,8 +61,12 @@ const MyPage = () => {
           setNewNickname("");
         }
       } catch (error) {
-        console.error(error);
-        alert("닉네임 변경에 실패했습니다. 다시 시도해주세요.");
+        console.error(error.response.data);
+        alert(error.response.data.message);
+        if(error.response.data.message==="토큰이 만료되었습니다. 다시 로그인 해주세요."){
+          logout();
+          nav('/login')
+        }
       }
     }
   };
