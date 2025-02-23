@@ -13,7 +13,8 @@ const MbtiTest = () => {
   const handleTestSubmit = async (answers) => {
     console.log('answers', answers)
     const mbtiResult = calculateMBTI(answers);
-    //mbtiResult를 jsonServer에 post 하는 로직 필요
+    //mbtiResult를 jsonServer에 post 하는 로직 필요 
+    //이때 작성자 id와 nickname도 같이...
     setTestResult(mbtiResult);
   };
 
