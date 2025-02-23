@@ -8,8 +8,6 @@ const MyPage = () => {
   const { token, logout, userData, patchNickname } = useAuthStore();
 
   const [newNickname, setNewNickname] = useState("");
- 
-  console.log("userData", userData);
   // 닉네임 업데이트
   const handleUpdateNickname = async (e) => {
     e.preventDefault();

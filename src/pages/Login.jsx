@@ -5,7 +5,7 @@ import useAuthStore from "../zustand/bearsStore";
 
 const Login = () => {
   const nav = useNavigate();
-  const { login, setUserData } = useAuthStore();
+  const { login } = useAuthStore();
   const [loginData, setLoginData] = useState({
     id: "",
     password: "",
@@ -25,8 +25,7 @@ const Login = () => {
       const { accessToken, success, userId, avatar, nickname } =
         await authLogin(loginData);
       if (success) {
-        login(accessToken); //컨텍스트에 토큰정보 전달 -> 토큰정보가 로컬스토리지에 저장됨/ 로그인 상태로 전환
-        setUserData(userId, avatar, nickname);
+        login(accessToken,userId,avatar,nickname); //로그인 시 받은 응답으로 로그인 상태를 바꾸고 토큰, 사용자 정보를 localstorage에 저장 
         alert("로그인에 성공했습니다. 메인페이지로 이동합니다.");
         nav("/");
       } else {

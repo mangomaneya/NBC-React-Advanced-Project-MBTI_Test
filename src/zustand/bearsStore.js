@@ -3,34 +3,34 @@ import { create } from "zustand";
 const useAuthStore = create((set) => ({
   isAuthenticated: !!localStorage.getItem("accessToken"),
   token: localStorage.getItem("accessToken"),
-  userData: {
-    id: "",
+  userData: JSON.parse(localStorage.getItem("userData")) || {
+    userId: "",
     avatar: "",
     nickname: "",
   },
-  login: (token) => {
+  login: (token, userId, avatar, nickname) => {
+    const newUserData = { userId, avatar, nickname };
     localStorage.setItem("accessToken", token);
-    set({ isAuthenticated: true, token });
+    localStorage.setItem("userData", JSON.stringify(newUserData));
+    set({ isAuthenticated: true, token, userData: newUserData });
   },
   logout: () => {
     localStorage.removeItem("accessToken");
-    set({ isAuthenticated: false, token: null });
-  },
-  //로그인 시에 회원정보를 저장
-  setUserData: (userId, avatar, nickname) => {
+    localStorage.removeItem("userData");
     set({
-      userData: {
-        userId,
-        avatar,
-        nickname,
-      },
+      isAuthenticated: false,
+      token: null,
+      userData: { userId: "", avatar: "", nickname: "" },
     });
   },
-  //닉네임만 업데이트 하는 함수 
+
+  //닉네임만 업데이트 하는 함수
   patchNickname: (newNickname) => {
-    set((state) => ({
-      userData: { ...state.userData, nickname: newNickname },
-    }));
+    set((state) => {
+      const updatedUserData = { ...state.userData, nickname: newNickname };
+      localStorage.setItem("userData", JSON.stringify(updatedUserData));
+      return { userData: updatedUserData };
+    });
   },
 }));
 
