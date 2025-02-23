@@ -1,40 +1,15 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import { getUserProfile, updateProfile } from "../api/auth";
+import { updateProfile } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../zustand/bearsStore";
 
 const MyPage = () => {
   const nav = useNavigate();
-  const { isAuthenticated, token, logout } = useAuthStore();
-  const [userData, setUserData] = useState({
-    id: "",
-    avatar: "",
-    nickname: "",
-  });
+  const { token, logout, userData, patchNickname } = useAuthStore();
+
   const [newNickname, setNewNickname] = useState("");
-
-  //마이페이지에 들어오면(마운트) 회원정보를 통신으로 가져오기
-  useEffect(() => {
-    if (!isAuthenticated) {
-      //로그인이 안된상태로 유입되거나, 마이페이지에서 사용자가 로그아웃을 눌르게 된 경우
-      alert("로그인이 필요합니다.");
-      nav("/login");
-    } else {
-      const fetchUserData = async () => {
-        try {
-          const { id, nickname, avatar, success } = await getUserProfile(token);
-          if (success) {
-            setUserData({ id, avatar, nickname });
-          }
-        } catch (error) {
-          console.error("회원 정보를 불러오는데 실패했습니다.", error);
-        }
-      };
-      fetchUserData();
-    }
-  }, [isAuthenticated, nav, token]); //useEffect에서 사용하는 모든 외부 변수는 의존성 배열에 포함시켜야 한다?
-
+ 
+  console.log("userData", userData);
   // 닉네임 업데이트
   const handleUpdateNickname = async (e) => {
     e.preventDefault();
@@ -55,16 +30,19 @@ const MyPage = () => {
         );
         // 통신이 성공하면 유저정보에서 닉네임을 업데이트 (닉네임 변경 성공 알림 + 닉네임 인풋을 지워주기)
         if (success) {
-          setUserData((prev) => ({ ...prev, nickname:updatedNickname }));
+          patchNickname(updatedNickname);
           alert(`닉네임이 변경되었습니다. 변경된 닉네임 : ${updatedNickname}`);
           setNewNickname("");
         }
       } catch (error) {
         console.error(error.response.data);
         alert(error.response.data.message);
-        if(error.response.data.message==="토큰이 만료되었습니다. 다시 로그인 해주세요."){
+        if (
+          error.response.data.message ===
+          "토큰이 만료되었습니다. 다시 로그인 해주세요."
+        ) {
           logout();
-          nav('/login')
+          nav("/login");
         }
       }
     }
@@ -78,7 +56,7 @@ const MyPage = () => {
     <div className="w-96	mx-4 flex flex-col items-center justify-center">
       <h2 className="text-3xl font-bold mb-6">마이 페이지</h2>
       <div className="w-full space-y-6 bg-white p-6 rounded-lg shadow-md ">
-        <p>아이디 : {userData.id}</p>
+        <p>아이디 : {userData.userId}</p>
         <p>닉네임 : {userData.nickname}</p>
         <form onSubmit={handleUpdateNickname} className="space-y-6">
           <input
