@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import useAuthStore from "../zustand/bearsStore";
 
 const Layout = () => {
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useAuthStore();
   const nav = useNavigate();
 
   //헤더에서 로그아웃 하면 home으로 이동

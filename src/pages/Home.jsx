@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import {  useNavigate } from "react-router-dom";
+import useAuthStore from "../zustand/bearsStore";
 
 const Home = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuthStore();
   const nav = useNavigate();
   //로그인이 ? 테스트로 이동 : 경고를 띄우고 로그인으로 이동
   const handleMoveToTest = () => {

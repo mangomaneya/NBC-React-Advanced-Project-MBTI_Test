@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authLogin } from "../api/auth";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import useAuthStore from "../zustand/bearsStore";
 
 const Login = () => {
   const nav = useNavigate();
-  const { login  } = useContext(AuthContext);
+  const { login  } = useAuthStore();
   const [loginData, setLoginData] = useState({
     id: "",
     password: "",
@@ -33,7 +32,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error(error);
-      alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      alert("로그인에 실패했습니다. 다시 시도해주세요.");
     }
   };
 

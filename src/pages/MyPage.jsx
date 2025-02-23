@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getUserProfile, updateProfile } from "../api/auth";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../zustand/bearsStore";
 
 const MyPage = () => {
   const nav = useNavigate();
-  const { isAuthenticated, token, logout } = useContext(AuthContext);
+  const { isAuthenticated, token, logout } = useAuthStore();
   const [userData, setUserData] = useState({
     id: "",
     avatar: "",
@@ -56,7 +55,7 @@ const MyPage = () => {
         );
         // 통신이 성공하면 유저정보에서 닉네임을 업데이트 (닉네임 변경 성공 알림 + 닉네임 인풋을 지워주기)
         if (success) {
-          setUserData((prev) => ({ ...prev, updatedNickname }));
+          setUserData((prev) => ({ ...prev, nickname:updatedNickname }));
           alert(`닉네임이 변경되었습니다. 변경된 닉네임 : ${updatedNickname}`);
           setNewNickname("");
         }

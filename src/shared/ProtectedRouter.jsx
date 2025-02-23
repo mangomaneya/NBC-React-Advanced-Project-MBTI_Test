@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { Navigate, Outlet } from "react-router-dom";
+import useAuthStore from "../zustand/bearsStore";
 
 const ProtectedRouter = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuthStore();
 
   if (isAuthenticated === null) {
     return <div> Loading ...</div>;
