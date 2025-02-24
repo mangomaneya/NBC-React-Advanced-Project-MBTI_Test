@@ -63,7 +63,7 @@ const MyPage = () => {
     return <div>Loading...</div>;
   }
   return (
-    <>
+    <div className="flex flex-col items-center gap-16">
       <div className="w-96	mx-4 flex flex-col items-center justify-center">
         <h2 className="text-3xl font-bold mb-6">마이 페이지</h2>
         <div className="w-full space-y-6 bg-white p-6 rounded-lg shadow-md ">
@@ -89,8 +89,8 @@ const MyPage = () => {
           </form>
         </div>
       </div>
-      <div>
-        <h2>내 테스트 결과</h2>
+      <div className="mx-4 flex flex-col items-center justify-center space-y-4 bg-slate-50">
+        <h2 className="text-3xl font-bold mb-6">내 테스트 결과</h2>
         {resultData.map((result) => {
           return (
             userData.userId === result.writerId && (
@@ -99,7 +99,7 @@ const MyPage = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

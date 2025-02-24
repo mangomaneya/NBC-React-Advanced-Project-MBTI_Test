@@ -21,7 +21,10 @@ const TestForm = ({ onTestSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white rounded-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6 p-6 bg-white rounded-lg w-full"
+    >
       {/* question.js 를 렌더링(map)
         id를 키로 주고
         question을 p태그에
@@ -29,18 +32,25 @@ const TestForm = ({ onTestSubmit }) => {
       {questions.map((q, index) => {
         const typeOpt = q.type.split("/"); // type을 '/'로 나눈 배열 (ex.[t,f])
         return (
-          <div key={q.id}>
-            <p>{q.question}</p>
-            <div>
+          <div key={q.id} className="mb-10 ">
+            <span className="text-2xl ">{`Q.${q.id}`}</span>
+            <p className="text-xl font-semibold my-4">{q.question}</p>
+            <div className="flex flex-col space-y-2">
               {typeOpt.map((option, i) => {
                 return (
-                  <label key={i}>
+                  <label
+                    key={i}
+                    className={`p-4 border rounded-lg  ${
+                      answers[index]?.answer === option ? "bg-purple-100 border-solid border-purple-300" : ""
+                    } hover:bg-purple-100 transition-all duration-100`}
+                  >
                     <input
                       type="radio"
                       name={`question-${index}-option`}
                       value={option}
                       checked={answers[index]?.answer === option} // 답변 배열에 저장된 answer값이 현재 옵션과 일치하는지 판단
                       onChange={() => handleOptionChange(index, option)}
+                      className="peer p-4 border rounded-lg mr-2 "
                       required
                     />
                     {q.options[i]}
@@ -51,7 +61,12 @@ const TestForm = ({ onTestSubmit }) => {
           </div>
         );
       })}
-      <button type="submit">제출하기</button>
+      <button
+        type="submit"
+        className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-300 transition duration-300 "
+      >
+        제출하기
+      </button>
     </form>
   );
 };

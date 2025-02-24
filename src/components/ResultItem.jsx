@@ -43,18 +43,37 @@ const ResultItem = ({ result }) => {
   };
 
   return (
-    <div className=" bg-purple-100 w-auto mx-16 p-6 rounded-xl">
-      <h4>{result.nickname}</h4>
-      <p>{getTimeStamp(result.date)}</p>
-      <p>{result.mbtiResult}</p>
-      <p>{mbtiDescriptions[result.mbtiResult].slice(5)}</p>
+    <div className="bg-purple-100 w-auto mx-16 p-6 rounded-xl shadow-md border border-purple-300">
+      <div className="flex items-center justify-between mb-2">
+        <h4 className="text-lg font-semibold text-purple-700">
+          {`${result.nickname}님의 MBTI는`}
+        </h4>
+        <p className="text-sm text-gray-500">{getTimeStamp(result.date)}</p>
+      </div>
+      <p className="text-xl font-bold text-purple-900">{result.mbtiResult}</p>
+      <p className="mt-2 text-gray-700">
+        {mbtiDescriptions[result.mbtiResult].slice(5)}
+      </p>
+
       {userData.userId === result.writerId && (
-        <>
-          <button onClick={() => changeVisibilityMutation.mutate(result)}>
+        <div className="mt-4 flex gap-2">
+          <button
+            onClick={() => changeVisibilityMutation.mutate(result)}
+            className={`px-4 py-2 text-sm font-medium text-white rounded-lg shadow ${
+              result.visibility
+                ? "bg-purple-500 hover:bg-purple-600"
+                : "bg-slate-500 hover:bg-slate-600"
+            } transition`}
+          >
             {result.visibility ? "비공개로 전환" : "공개로 전환"}
           </button>
-          <button onClick={() => handleDeleteResult()}>삭제</button>
-        </>
+          <button
+            onClick={() => handleDeleteResult()}
+            className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg shadow hover:bg-red-600 transition"
+          >
+            삭제
+          </button>
+        </div>
       )}
     </div>
   );

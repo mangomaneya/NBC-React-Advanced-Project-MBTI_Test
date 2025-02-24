@@ -45,30 +45,38 @@ const MbtiTest = () => {
   };
   return (
     // 테스트 결과 유무에 따라서 ? 테스트 : 결과
-    <div>
+    <div className="w-full mx-4 flex flex-col items-center justify-center">
       {!testResult ? (
         <>
-          <h2>MbtiTest</h2>
+          <h2 className="text-3xl font-bold mb-6">MbtiTest</h2>
           <TestForm onTestSubmit={handleTestSubmit} />
         </>
       ) : (
-        <>
-          <h2>
-            당신의 유형은? <span>{testResult}</span>
+        <div>
+          <h2 className="text-3xl font-bold mb-6">
+            당신의 유형은? <span className="text-purple-500">{testResult}</span>
           </h2>
           <p>
-            {mbtiDescriptions[testResult] ||
+            {mbtiDescriptions[testResult].slice(5) ||
               "해당 성격 유형에 대한 설명이 없습니다."}
           </p>
-          <button onClick={handleMoveToResults}>결과페이지로 이동하기</button>
-          <button
-            onClick={() => {
-              setTestResult(null);
-            }}
-          >
-            다시 테스트하기
-          </button>
-        </>
+          <div className="mt-4 flex  gap-2">
+            <button
+              onClick={handleMoveToResults}
+              className=" bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 transition duration-300"
+            >
+              결과페이지로 이동하기
+            </button>
+            <button
+              onClick={() => {
+                setTestResult(null);
+                
+              }}
+              className=" bg-red-500 text-white p-4 rounded-lg hover:bg-red-600 transition duration-300">
+              다시 테스트하기
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

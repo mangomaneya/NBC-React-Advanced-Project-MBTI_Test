@@ -15,7 +15,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-slate-50 flex flex-col">
       <header className="bg-purple-400 p-7 shadow-md rounded-xl mx-4 my-4">
         <nav className="container mx-auto flex justify-between items-center text-slate-50 text-lg h-11">
           <Link to="/">
@@ -46,7 +46,7 @@ const Layout = () => {
           </div>
         </nav>
       </header>
-      <main className="container mx-auto pt-10 main flex flex-col items-center justify-center">
+      <main className="container mx-auto pt-10 main flex flex-col items-center justify-center h-full mb-20">
         <Outlet />
       </main>
     </div>

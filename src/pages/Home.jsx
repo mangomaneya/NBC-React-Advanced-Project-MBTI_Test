@@ -15,10 +15,10 @@ const Home = () => {
   };
   return (
     <div className="w-full flex flex-col items-center justify-center bg-transparent">
-      <h1 className="text-5xl font-bold text-primary-color mb-6">
+      <h1 className="text-5xl font-bold mb-6">
         무료 성격 테스트
       </h1>
-      <p className="mb-8 text-lg text-secondary-color">
+      <p className="mb-8 text-lg">
         자신의 성격 유형을 확인할 수 있도록 솔직하게 답변해 주세요.
       </p>
       

@@ -22,6 +22,46 @@
       "writerId": "mangchiman",
       "nickname": "ddd",
       "mbtiResult": "INFP",
+      "visibility": true
+    },
+    {
+      "id": "87d7",
+      "date": 1740399887020,
+      "writerId": "mangchiman",
+      "nickname": "ddd",
+      "mbtiResult": "ISTJ",
+      "visibility": true
+    },
+    {
+      "id": "3143",
+      "date": 1740400117220,
+      "writerId": "mangchiman",
+      "nickname": "ddd",
+      "mbtiResult": "ISFP",
+      "visibility": false
+    },
+    {
+      "id": "11ac",
+      "date": 1740400188467,
+      "writerId": "mangchiman",
+      "nickname": "ddd",
+      "mbtiResult": "ENFJ",
+      "visibility": true
+    },
+    {
+      "id": "c7db",
+      "date": 1740400306556,
+      "writerId": "mangchiman",
+      "nickname": "ddd",
+      "mbtiResult": "ISFJ",
+      "visibility": false
+    },
+    {
+      "id": "97b0",
+      "date": 1740400476370,
+      "writerId": "mangchiman",
+      "nickname": "ddd",
+      "mbtiResult": "INTP",
       "visibility": false
     }
   ]
