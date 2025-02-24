@@ -5,7 +5,7 @@ import { mbtiDescriptions } from "../data/mbtiDescriptions";
 import useAuthStore from "../zustand/bearsStore";
 import { createTestResult } from "../api/test";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import TestForm from "../components/TestForm";
+import FormTest from "../components/FormTest";
 
 const MbtiTest = () => {
   //테스트 결과를 담는 state
@@ -49,7 +49,7 @@ const MbtiTest = () => {
       {!testResult ? (
         <>
           <h2 className="text-3xl font-bold mb-6">MbtiTest</h2>
-          <TestForm onTestSubmit={handleTestSubmit} />
+          <FormTest onTestSubmit={handleTestSubmit} />
         </>
       ) : (
         <div className=" w-auto mx-16 p-6 bg-white rounded-xl shadow-md ">
