@@ -54,7 +54,6 @@ const MyPage = () => {
     return <div>로딩중입니다...</div>;
   }
   if (resultError) {
-    console.log("isError", resultError);
     return <div>데이터 조회 중 오류가 발생했습니다.</div>;
   }
 
