@@ -3,15 +3,15 @@
     {
       "id": "cce8",
       "date": 1740332989350,
-      "userId": "mangoman",
+      "writerId": "mangchiman",
       "nickname": "12341234",
       "mbtiResult": "ENTJ",
-      "visibility": true
+      "visibility": false
     },
     {
       "id": "f649",
       "date": 1740333010933,
-      "userId": "mangoman",
+      "writerId": "mangoman",
       "nickname": "12341234",
       "mbtiResult": "INFJ",
       "visibility": true
@@ -19,10 +19,26 @@
     {
       "id": "b474",
       "date": 1740359084570,
-      "userId": "mangoman",
+      "writerId": "mangoman",
       "nickname": "1111111",
       "mbtiResult": "INFJ",
       "visibility": true
+    },
+    {
+      "id": "7b31",
+      "date": 1740380106029,
+      "writerId": "mangoman",
+      "nickname": "adg agsdasdfgadsag",
+      "mbtiResult": "ISFP",
+      "visibility": true
+    },
+    {
+      "id": "f483",
+      "date": 1740384902374,
+      "writerId": "mangchiman",
+      "nickname": "ddd",
+      "mbtiResult": "INFP",
+      "visibility": false
     }
   ]
 }

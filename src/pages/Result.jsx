@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTestResults } from "../api/test";
+import ResultItem from "../components/ResultItem";
 
 const Result = () => {
   const {
@@ -10,6 +11,7 @@ const Result = () => {
     queryKey: ["testResults"],
     queryFn: getTestResults,
   });
+
   if (isPending) {
     return <div>로딩중입니다...</div>;
   }
@@ -20,13 +22,12 @@ const Result = () => {
   }
 
   return (
-    <div>
+    <div className="space-y-4 bg-slate-50">
       {resultData.map((result) => {
         return (
-          <div key={result.id}>
-            <h4>{result.nickname}</h4>
-            <p>{result.mbtiResult}</p>
-          </div>
+          result.visibility && (
+            <ResultItem result={result} key={result.id}></ResultItem>
+          )
         );
       })}
     </div>
