@@ -1,5 +1,6 @@
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuthStore from "../zustand/bearsStore";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const { isAuthenticated } = useAuthStore();
@@ -7,7 +8,12 @@ const Home = () => {
   //로그인이 ? 테스트로 이동 : 경고를 띄우고 로그인으로 이동
   const handleMoveToTest = () => {
     if (!isAuthenticated) {
-      alert("로그인이 필요합니다.");
+      Swal.fire({
+        title: "로그인이 필요합니다.",
+        text: "로그인페이지로 이동합니다.",
+        icon: "warning",
+        confirmButtonColor: "#c084fc",
+      });
       nav("/login");
     } else {
       nav("test");
@@ -15,13 +21,11 @@ const Home = () => {
   };
   return (
     <div className="w-full flex flex-col items-center justify-center bg-transparent">
-      <h1 className="text-5xl font-bold mb-6">
-        무료 성격 테스트
-      </h1>
+      <h1 className="text-5xl font-bold mb-6">무료 성격 테스트</h1>
       <p className="mb-8 text-lg">
         자신의 성격 유형을 확인할 수 있도록 솔직하게 답변해 주세요.
       </p>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-4">
         <section className="transition-all duration-300	bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl mx-4">
           <h2 className="text-xl font-semibold mb-4">성격유형검사</h2>
@@ -44,7 +48,12 @@ const Home = () => {
           </p>
         </section>
       </div>
-      <button onClick={handleMoveToTest} className="bg-purple-600 p-4 rounded-xl text-slate-100 font-semibold transition-all duration-300 hover:bg-purple-400">내 성격 알아보러 가기</button>
+      <button
+        onClick={handleMoveToTest}
+        className="bg-purple-600 p-4 rounded-xl text-slate-100 font-semibold transition-all duration-300 hover:bg-purple-400"
+      >
+        내 성격 알아보러 가기
+      </button>
     </div>
   );
 };
