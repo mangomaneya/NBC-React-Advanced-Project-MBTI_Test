@@ -9,14 +9,6 @@
       "visibility": true
     },
     {
-      "id": "7b31",
-      "date": 1740380106029,
-      "writerId": "mangoman",
-      "nickname": "adg agsdasdfgadsag",
-      "mbtiResult": "ISFP",
-      "visibility": true
-    },
-    {
       "id": "f483",
       "date": 1740384902374,
       "writerId": "mangchiman",
@@ -63,6 +55,22 @@
       "nickname": "ddd",
       "mbtiResult": "INTP",
       "visibility": false
+    },
+    {
+      "id": "91a6",
+      "date": 1740401817263,
+      "writerId": "mangoman",
+      "nickname": "이봐 징징이",
+      "mbtiResult": "ENFP",
+      "visibility": true
+    },
+    {
+      "id": "8a88",
+      "date": 1740401848316,
+      "writerId": "mangoman",
+      "nickname": "이봐 징징이",
+      "mbtiResult": "ISFJ",
+      "visibility": true
     }
   ]
 }

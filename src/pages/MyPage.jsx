@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthStore from "../zustand/bearsStore";
 import { useGetTestResults } from "../hooks/queries";
 import ResultItem from "../components/ResultItem";
+import Swal from "sweetalert2";
 
 const MyPage = () => {
   const nav = useNavigate();
@@ -15,7 +16,12 @@ const MyPage = () => {
     e.preventDefault();
     //새로운 닉네임이 입력되지 않았을 때
     if (!newNickname) {
-      alert("변경할 내용이 없습니다.");
+      Swal.fire({
+        icon: "warning",
+        title:"변경할 내용이 없습니다.",
+        text: "변경할 닉네임을 입력하고 시도해주세요.",
+        confirmButtonColor: "#c084fc",
+      })
       return;
     }
     const confirmInput = window.confirm("정말 변경하시겠습니까?");

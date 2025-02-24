@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { deleteTestResult, updateTestResultVisibility } from "../api/test";
 import { mbtiDescriptions } from "../data/mbtiDescriptions";
 import useAuthStore from "../zustand/bearsStore";
@@ -24,11 +25,26 @@ const ResultItem = ({ result }) => {
     },
   });
 
-  const handleDeleteResult = () => {
-    const confirmDelete = window.confirm("정말 삭제하시겠습니까");
-    if (confirmDelete) {
+  const handleDeleteResult = async () => {
+    const response = await Swal.fire({
+      title: "정말 삭제하시겠습니까",
+      text: "이 작업은 돌이킬 수 없습니다.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#c084fc",
+      confirmButtonText: "삭제",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "취소",
+    });
+
+    if (response.isConfirmed) {
       deleteResultMutation.mutate(result.id);
-      alert("성공적으로 삭제되었습니다.");
+      Swal.fire({
+        title: "삭제완료",
+        text: "성공적으로 삭제되었습니다.",
+        icon: "success",
+        confirmButtonColor: "#c084fc",
+      });
     }
   };
 

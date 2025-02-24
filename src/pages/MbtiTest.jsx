@@ -52,7 +52,7 @@ const MbtiTest = () => {
           <TestForm onTestSubmit={handleTestSubmit} />
         </>
       ) : (
-        <div>
+        <div className=" w-auto mx-16 p-6 bg-white rounded-xl shadow-md ">
           <h2 className="text-3xl font-bold mb-6">
             당신의 유형은? <span className="text-purple-500">{testResult}</span>
           </h2>

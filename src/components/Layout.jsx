@@ -1,14 +1,30 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuthStore from "../zustand/bearsStore";
+import Swal from "sweetalert2";
 
 const Layout = () => {
   const { isAuthenticated, logout } = useAuthStore();
   const nav = useNavigate();
 
   //헤더에서 로그아웃 하면 home으로 이동
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("정말로 로그아웃 하시겠습니까?");
-    if (confirmLogout) {
+  const handleLogout = async () => {
+    const response = await Swal.fire({
+      title: "로그아웃",
+      text: "정말로 로그아웃 하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#c084fc",
+      confirmButtonText: "로그아웃",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "취소",
+    });
+    if (response.isConfirmed) {
+      Swal.fire({
+        title: "로그아웃됨",
+        text: "메인페이지로 이동합니다.",
+        icon: "success",
+        confirmButtonColor: "#c084fc",
+      });
       logout(); //로컬에서 엑세스 토큰을 제거하고, 로그인 상태를 로그아웃으로 변경
       nav("/"); // home으로 이동
     }
