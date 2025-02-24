@@ -1,23 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { getTestResults } from "../api/test";
 import ResultItem from "../components/ResultItem";
+import { useGetTestResults } from "../hooks/queries";
 
 const Result = () => {
-  const {
-    data: resultData,
-    isPending,
-    isError,
-  } = useQuery({
-    queryKey: ["testResults"],
-    queryFn: getTestResults,
-  });
+  const { data: resultData, isPending:resultPending, isError:resultError } = useGetTestResults();
 
-  if (isPending) {
+  if (resultPending) {
     return <div>로딩중입니다...</div>;
   }
-
-  if (isError) {
-    console.log("isError", isError);
+  if (resultError) {
+    console.log("isError", resultError);
     return <div>데이터 조회 중 오류가 발생했습니다.</div>;
   }
 

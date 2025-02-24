@@ -2,6 +2,8 @@ import { useState } from "react";
 import { updateProfile } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../zustand/bearsStore";
+import { useGetTestResults } from "../hooks/queries";
+import ResultItem from "../components/ResultItem";
 
 const MyPage = () => {
   const nav = useNavigate();
@@ -42,37 +44,62 @@ const MyPage = () => {
       }
     }
   };
+  const {
+    data: resultData,
+    isPending: resultPending,
+    isError: resultError,
+  } = useGetTestResults();
+
+  if (resultPending) {
+    return <div>로딩중입니다...</div>;
+  }
+  if (resultError) {
+    console.log("isError", resultError);
+    return <div>데이터 조회 중 오류가 발생했습니다.</div>;
+  }
 
   //유저데이터가 아직 set되지 않았을 때 보여줄 화면
   if (!userData) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="w-96	mx-4 flex flex-col items-center justify-center">
-      <h2 className="text-3xl font-bold mb-6">마이 페이지</h2>
-      <div className="w-full space-y-6 bg-white p-6 rounded-lg shadow-md ">
-        <p>아이디 : {userData.userId}</p>
-        <p>닉네임 : {userData.nickname}</p>
-        <form onSubmit={handleUpdateNickname} className="space-y-6">
-          <input
-            type="text"
-            name="nickname"
-            placeholder={userData.nickname}
-            value={newNickname}
-            onChange={(e) => {
-              setNewNickname(e.target.value);
-            }}
-            className="w-full p-4 border border-gray-300 rounded-lg "
-          />
-          <button
-            type="submit"
-            className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-300 transition duration-300 "
-          >
-            닉네임 수정
-          </button>
-        </form>
+    <>
+      <div className="w-96	mx-4 flex flex-col items-center justify-center">
+        <h2 className="text-3xl font-bold mb-6">마이 페이지</h2>
+        <div className="w-full space-y-6 bg-white p-6 rounded-lg shadow-md ">
+          <p>아이디 : {userData.userId}</p>
+          <p>닉네임 : {userData.nickname}</p>
+          <form onSubmit={handleUpdateNickname} className="space-y-6">
+            <input
+              type="text"
+              name="nickname"
+              placeholder={userData.nickname}
+              value={newNickname}
+              onChange={(e) => {
+                setNewNickname(e.target.value);
+              }}
+              className="w-full p-4 border border-gray-300 rounded-lg "
+            />
+            <button
+              type="submit"
+              className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-300 transition duration-300 "
+            >
+              닉네임 수정
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+      <div>
+        <h2>내 테스트 결과</h2>
+        {resultData.map((result) => {
+          return (
+            userData.userId === result.writerId && (
+              <ResultItem result={result} key={result.id}></ResultItem>
+            )
+          );
+        })}
+      </div>
+    </>
   );
 };
 

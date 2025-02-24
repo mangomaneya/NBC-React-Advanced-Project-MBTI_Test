@@ -1,4 +1,4 @@
-import { updateTestResultVisibility } from "../api/test";
+import { deleteTestResult, updateTestResultVisibility } from "../api/test";
 import { mbtiDescriptions } from "../data/mbtiDescriptions";
 import useAuthStore from "../zustand/bearsStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -15,6 +15,22 @@ const ResultItem = ({ result }) => {
       });
     },
   });
+  const deleteResultMutation = useMutation({
+    mutationFn: deleteTestResult,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["testResults"],
+      });
+    },
+  });
+
+  const handleDeleteResult = () => {
+    const confirmDelete = window.confirm("정말 삭제하시겠습니까");
+    if (confirmDelete) {
+      deleteResultMutation.mutate(result.id);
+      alert("성공적으로 삭제되었습니다.");
+    }
+  };
 
   const getTimeStamp = (date) => {
     return new Intl.DateTimeFormat("ko-KR", {
@@ -35,9 +51,9 @@ const ResultItem = ({ result }) => {
       {userData.userId === result.writerId && (
         <>
           <button onClick={() => changeVisibilityMutation.mutate(result)}>
-            비공개로 전환
+            {result.visibility ? "비공개로 전환" : "공개로 전환"}
           </button>
-          <button>삭제</button>
+          <button onClick={() => handleDeleteResult()}>삭제</button>
         </>
       )}
     </div>
