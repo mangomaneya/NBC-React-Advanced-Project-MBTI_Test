@@ -3,18 +3,31 @@ import { useNavigate } from "react-router-dom";
 import { calculateMBTI } from "../utils/mbtiCalculator";
 import TestForm from "../components/TestForm";
 import { mbtiDescriptions } from "../data/mbtiDescriptions";
+import useAuthStore from "../zustand/bearsStore";
+import { createTestResult } from "../api/test";
 
 const MbtiTest = () => {
   //테스트 결과를 담는 state
   const [testResult, setTestResult] = useState(null);
+  const {
+    userData: { userId, nickname },
+  } = useAuthStore();
   const nav = useNavigate();
 
   //테스트 내용을 제출
   const handleTestSubmit = async (answers) => {
-    console.log('answers', answers)
     const mbtiResult = calculateMBTI(answers);
-    //mbtiResult를 jsonServer에 post 하는 로직 필요 
+    //mbtiResult를 jsonServer에 post 하는 로직 필요
     //이때 작성자 id와 nickname도 같이...
+    //탠스택쿼리로 전환 필요 
+    const resultData = { userId, nickname, mbtiResult };
+    try {
+      const response = await createTestResult(resultData);
+      console.log("response", response);
+    } catch (error) {
+      console.error(error);
+    }
+
     setTestResult(mbtiResult);
   };
 

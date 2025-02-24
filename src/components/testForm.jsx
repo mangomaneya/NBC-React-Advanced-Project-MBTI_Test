@@ -41,8 +41,9 @@ const TestForm = ({ onTestSubmit }) => {
                       value={option}
                       checked={answers[index]?.answer === option} // 답변 배열에 저장된 answer값이 현재 옵션과 일치하는지 판단
                       onChange={() => handleOptionChange(index, option)}
+                      required
                     />
-                    {option}
+                    {q.options[i]}
                   </label>
                 );
               })}

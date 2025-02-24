@@ -1,3 +1,28 @@
 {
-  "testResults": []
+  "testResults": [
+    {
+      "id": "cce8",
+      "date": 1740332989350,
+      "userId": "mangoman",
+      "nickname": "12341234",
+      "mbtiResult": "ENTJ",
+      "visibility": true
+    },
+    {
+      "id": "f649",
+      "date": 1740333010933,
+      "userId": "mangoman",
+      "nickname": "12341234",
+      "mbtiResult": "INFJ",
+      "visibility": true
+    },
+    {
+      "id": "b474",
+      "date": 1740359084570,
+      "userId": "mangoman",
+      "nickname": "1111111",
+      "mbtiResult": "INFJ",
+      "visibility": true
+    }
+  ]
 }
