@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculateMBTI } from "../utils/mbtiCalculator";
-import TestForm from "../components/TestForm";
 import { mbtiDescriptions } from "../data/mbtiDescriptions";
 import useAuthStore from "../zustand/bearsStore";
 import { createTestResult } from "../api/test";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import TestForm from "../components/TestForm";
 
 const MbtiTest = () => {
   //테스트 결과를 담는 state
@@ -70,9 +70,9 @@ const MbtiTest = () => {
             <button
               onClick={() => {
                 setTestResult(null);
-                
               }}
-              className=" bg-red-500 text-white p-4 rounded-lg hover:bg-red-600 transition duration-300">
+              className=" bg-red-500 text-white p-4 rounded-lg hover:bg-red-600 transition duration-300"
+            >
               다시 테스트하기
             </button>
           </div>
