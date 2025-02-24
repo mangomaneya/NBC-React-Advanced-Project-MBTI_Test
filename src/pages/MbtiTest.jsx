@@ -5,7 +5,7 @@ import { mbtiDescriptions } from "../data/mbtiDescriptions";
 import useAuthStore from "../zustand/bearsStore";
 import { createTestResult } from "../api/test";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import TestForm from "../components/TestForm.jsx";
+import TestForm from "../components/TestForm";
 
 const MbtiTest = () => {
   //테스트 결과를 담는 state
