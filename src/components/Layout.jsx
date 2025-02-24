@@ -21,7 +21,7 @@ const Layout = () => {
     if (response.isConfirmed) {
       Swal.fire({
         title: "로그아웃됨",
-        text: "메인페이지로 이동합니다.",
+        text: "정상적으로 로그아웃 되었습니다.",
         icon: "success",
         confirmButtonColor: "#c084fc",
       });
