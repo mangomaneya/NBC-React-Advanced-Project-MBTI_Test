@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authLogin } from "../api/auth";
 import useAuthStore from "../zustand/bearsStore";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const nav = useNavigate();
@@ -20,20 +21,19 @@ const Login = () => {
 
     //로그인 통신
     //로그인에 성공하면 ->메인페이지로 이동
-    //로그인에 실패하면 -> alert (실패) / 에러로그 찍기
-    try {
-      const { accessToken, success, userId, avatar, nickname } =
-        await authLogin(loginData);
-      if (success) {
-        login(accessToken,userId,avatar,nickname); //로그인 시 받은 응답으로 로그인 상태를 바꾸고 토큰, 사용자 정보를 localstorage에 저장 
-        alert("로그인에 성공했습니다. 메인페이지로 이동합니다.");
-        nav("/");
-      } else {
-        alert("로그인에 실패했습니다. 다시 시도해주세요.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("로그인에 실패했습니다. 다시 시도해주세요.");
+
+    const { accessToken, success, userId, avatar, nickname } = await authLogin(
+      loginData
+    );
+    if (success) {
+      login(accessToken, userId, avatar, nickname); //로그인 시 받은 응답으로 로그인 상태를 바꾸고 토큰, 사용자 정보를 localstorage에 저장
+      Swal.fire({
+        icon: "success",
+        title: "로그인에 성공했습니다",
+        text: "메인페이지로 이동합니다.",
+        confirmButtonColor: "#c084fc",
+      });
+      nav("/");
     }
   };
 

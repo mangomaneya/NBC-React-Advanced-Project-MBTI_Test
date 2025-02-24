@@ -22,34 +22,15 @@ const Signup = () => {
     // 회원가입에 성공하면 -> alert(성공) / 로그인페이지로 이동
     // 회원가입에 실패하면 -> alert (실패) / 에러로그 찍기
 
-    try {
-      const { message, success } = await register(signupData);
-      if (success) {
-        Swal.fire({
-          icon: "success",
-          title: "회원가입에 성공했습니다.",
-          text: "로그인페이지로 이동합니다.",
-          confirmButtonColor: "#c084fc"
-        });
-        nav("/login");
-      }
-      if (message !== "회원가입 완료") {
-        Swal.fire({
-          icon: "error",
-          title: "회원가입 실패",
-          text: message,
-          confirmButtonColor: "#c084fc"
-        });
-        return;
-      }
-    } catch (error) {
-      console.error(error.response.data);
+    const { success } = await register(signupData);
+    if (success) {
       Swal.fire({
-        icon: "error",
-        title: "회원가입 실패",
-        text: error.response.data.message,
-        confirmButtonColor: "#11051c"
+        icon: "success",
+        title: "회원가입에 성공했습니다.",
+        text: "로그인페이지로 이동합니다.",
+        confirmButtonColor: "#c084fc",
       });
+      nav("/login");
     }
   };
 

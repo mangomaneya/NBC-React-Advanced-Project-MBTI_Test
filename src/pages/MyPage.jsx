@@ -35,10 +35,7 @@ const MyPage = () => {
       } catch (error) {
         console.error(error.response.data);
         alert(error.response.data.message);
-        if (
-          error.response.data.message ===
-          "토큰이 만료되었습니다. 다시 로그인 해주세요."
-        ) {
+        if (error.code === 401) {
           logout();
           nav("/login");
         }
